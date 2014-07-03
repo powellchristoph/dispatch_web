@@ -16,7 +16,7 @@ Current pollers:
 * GooglePoller - A specialty poller built to support Google. It is the same as the Dir Poller, but once it has completely sent the directory, it will send a blank file called *delivery.complete*.
 * DirTarPoller - Scans for tar files with in the found subdirectories.
 
-Dispatch Agent is the stateless agent which actually monitors the directories and initiates the transfers. You can run and agent on the same server as Dispatch web, or scale out to multiple nodes.
+[Dispatch Agent](https://github.com/powellchristoph/dispatch_agent) is the stateless agent which actually monitors the directories and initiates the transfers. You can run and agent on the same server as Dispatch web, or scale out to multiple nodes.
 
 
 
