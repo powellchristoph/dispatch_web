@@ -1,0 +1,50 @@
+Stats collected at: 2014-07-03 17:00:01.591339
+
+Total Transfers: 301209
+Total Sent: 213.4TB
+
+Successful Transfers: 298451
+Errored Transfers: 2338
+
+Total pollers: 34
+Enabled pollers: 33
+Disabled pollers: 1
+
++---------------+---------+-------+------------+
+| Poller        | Success | Error | Total Sent |
++---------------+---------+-------+------------+
+| 5thstreet     |   1845  |  169  |   3.7TB    |
+| beanfield     |   2829  |   3   |   1.9TB    |
+| bell          |   995   |   24  |   15.0TB   |
+| buckeye       |   5711  |   11  |   6.7TB    |
+| cablebahamas  |  29710  |  241  |   13.6TB   |
+| centurylink   |  11783  |  433  |   9.0TB    |
+| columbus      |  28019  |   52  |   8.6TB    |
+| comcast       |  148287 |  460  |   87.1TB   |
+| directv       |   234   |   0   |   3.4TB    |
+| eastlink      |   4523  |   10  |   3.0TB    |
+| ibahn         |   935   |  241  |  736.0GB   |
+| infovalue     |   840   |   13  |  558.4GB   |
+| kit           |   3862  |   81  |   2.6TB    |
+| lifeware      |   1370  |   79  |   2.9TB    |
+| logic         |   2373  |   59  |   1.2TB    |
+| mornington    |   4267  |   12  |   6.2TB    |
+| NOVUS         |   4331  |   1   |   3.1TB    |
+| revel         |   1583  |   37  |   3.2TB    |
+| rogers        |    10   |   0   |   19.6GB   |
+| rogers_adult  |    0    |   0   |  0.0bytes  |
+| rogers_vod    |  12579  |   15  |   6.2TB    |
+| roomlinx      |   594   |   16  |   1.8TB    |
+| se_beth       |   3846  |   14  |   2.5TB    |
+| se_wilkes     |   7336  |   22  |   4.9TB    |
+| shaw          |   933   |   60  |  485.5GB   |
+| swisscom      |    36   |   11  |   36.0GB   |
+| tangerine     |   4320  |   11  |   1.5TB    |
+| telus_network |   1737  |   8   |  564.1GB   |
+| telus_studio  |   1385  |   14  |   1.0TB    |
+| verizon       |   2211  |   51  |   14.5TB   |
+| videotron     |   2053  |   23  |   1.0TB    |
+| westcom       |   5535  |  127  |   3.2TB    |
+| windstream    |   1488  |   14  |  888.7GB   |
+| xfinity       |   552   |   0   |   2.0TB    |
++---------------+---------+-------+------------+

@@ -1,0 +1,234 @@
+{% extends "dispatch_web.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+      $("#sshKeyDiv").hide()
+      $('#encryptDiv').hide();
+
+      $('#sshOptionRadios1').click(function () {
+        $('#sshKeyDiv').hide();
+        $('#sshPassDiv').show();
+      });
+
+      $('#sshOptionRadios2').click(function () {
+        $('#sshPassDiv').hide();
+        $('#sshKeyDiv').show();
+      });
+
+      $('#id_encrypt').click(function () {
+        if( $(this).is(':checked')) {
+          $('#encryptDiv').show();
+        } else {
+          $('#encryptDiv').hide();
+        }
+      });
+  });
+</script>
+
+<div class="row">
+  <div class="span6 offset1">
+    <p class="text-info"><i class="icon-warning-sign"></i> Changes here will cause the poller to restart.</p>
+    <br />
+    <form class="form-horizontal" action="" method="post">
+      {% csrf_token %}
+
+      <fieldset>
+        <legend>Poller Information</legend>
+        <div class="control-group">
+          <label class="control-label">Enable Poller</label> 
+          <div class="controls">
+            {{ form.enabled}}
+            <span class="help-inline">
+              {% for error in form.enabled.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.enabled.help_text %}
+              <p class="help muted"><small>{{ form.enabled.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Poller Name</label> 
+          <div class="controls">
+            {{ form.name }}
+            <span class="help-inline">
+              {% for error in form.name.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.name.help_text %}
+              <p class="help muted"><small>{{ form.name.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Poller Path</label> 
+          <div class="controls">
+            {{ form.path}}
+            <span class="help-inline">
+              {% for error in form.path.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.path.help_text %}
+              <p class="help muted"><small>{{ form.path.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Poller Type</label> 
+          <div class="controls">
+            {{ form.poller_type}}
+            <span class="help-inline">
+              {% for error in form.poller_type.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.poller_type.help_text %}
+              <p class="help muted"><small>{{ form.poller_type.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Max Concurrent Transfers</label> 
+          <div class="controls">
+            {{ form.max_transfers}}
+            <span class="help-inline">
+              {% for error in form.max_transfers.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.poller_type.max_transfers%}
+              <p class="help muted"><small>{{ form.max_transfers.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Aspera Information</legend>
+        <div class="control-group">
+          <label class="control-label">Host</label> 
+          <div class="controls">
+            {{ form.host}}
+            <span class="help-inline">
+              {% for error in form.host.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.host.help_text %}
+              <p class="help muted"><small>{{ form.host.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Username</label> 
+          <div class="controls">
+            {{ form.username}}
+            <span class="help-inline">
+              {% for error in form.username.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.username.help_text %}
+              <p class="help muted"><small>{{ form.username.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Authentication</label>
+          <div class="controls">
+            <label class="radio inline">
+              <input type="radio" name="sshOptionRadios" id="sshOptionRadios1" checked>
+              Password
+            </label>
+            <label class="radio inline">
+              <input type="radio" name="sshOptionRadios" id="sshOptionRadios2" >
+              SSH Key
+            </label>
+          </div>
+        </div>
+        <div class="control-group" id='sshPassDiv'>
+          <label class="control-label">Password</label> 
+          <div class="controls">
+            {{ form.password}}
+            <span class="help-inline">
+              {% for error in form.password.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.password.help_text %}
+              <p class="help muted"><small>{{ form.password.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group" id='sshKeyDiv'>
+          <label class="control-label">SSH Key</label> 
+          <div class="controls">
+            {{ form.ssh_key}}
+            <span class="help-inline">
+              {% for error in form.ssh_key.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.ssh_key.help_text %}
+              <p class="help muted"><small>{{ form.ssh_key.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Transfer Speed</label> 
+          <div class="controls">
+            {{ form.transfer_speed}}
+            <span class="help-inline">
+              {% for error in form.transfer_speed.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.transfer_speed.help_text %}
+              <p class="help muted"><small>{{ form.transfer_speed.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">SSH Port</label> 
+          <div class="controls">
+            {{ form.ssh_port}}
+            <span class="help-inline">
+              {% for error in form.ssh_port.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.ssh_port.help_text %}
+              <p class="help muted"><small>{{ form.ssh_port.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Destination</label> 
+          <div class="controls">
+            {{ form.destination}}
+            <span class="help-inline">
+              {% for error in form.destination.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.destination.help_text %}
+              <p class="help muted"><small>{{ form.destination.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Encryption</label> 
+          <div class="controls">
+            {{ form.encrypt}}
+            <span class="help-inline">
+              {% for error in form.encrypt.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.encrypt.help_text %}
+              <p class="help muted"><small>{{ form.encrypt.help_text }}</small></p>
+            {% endif %}
+          </div>
+        <div class="control-group" id="encryptDiv">
+          <label class="control-label">Ecryption Passphrase</label> 
+          <div class="controls">
+            {{ form.encrypt_passphrase}}
+            <span class="help-inline">
+              {% for error in form.encrypt_passphrase.errors %}<p class="text-error">{{ error }}</p>{% endfor %}
+            </span>
+            {% if form.encrypt_passphrase.help_text %}
+              <p class="help muted"><small>{{ form.encrypt_passphrase.help_text }}</small></p>
+            {% endif %}
+          </div>
+
+      </fieldset>
+      <p class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit </button>
+        or <a href="{% url 'dispatch:pollers' %}" class="btn btn-inverse"> Cancel</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

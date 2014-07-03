@@ -1,0 +1,29 @@
+{% extends "dispatch_web.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="span10 offset1">
+    <h3>Affiliate Pollers <a href="{% url 'dispatch:add_poller' %}" class="btn btn-primary pull-right" type="button"><i class="icon-plus icon-white"></i> Add Poller</a></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="span10 offset1">
+  <table class="table table-striped">
+    {% for p in pollers %}
+    <tr>
+      <td><a href="{% url 'dispatch:poller_detail' p.id %}">{{ p.name|upper }}</a></td>
+      <td>
+      {% if p.enabled %}
+      <button type="button" class="btn btn-info btn-small disabled"><i class="icon-ok-sign icon-white"></i> Running...</button>
+      {% else %}
+      <button type="button" class="btn btn-danger btn-small disabled"><i class="icon-warning-sign icon-white"></i> Disabled</button>
+      {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+</div>
+
+{% endblock %}

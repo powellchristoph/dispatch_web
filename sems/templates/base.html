@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en">
+{% load bootstrap_toolkit %}
+{% load url from future %}
+<head>
+    <meta charset="utf-8">
+    <title>SEMS</title>
+    <meta name="description" content="">
+    <meta name="author" content="Chris Powell">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.css" />
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+    <script src="{{ STATIC_URL }}js/jquery-min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">SEMS</a>
+            <ul class="nav">
+              <li><a href="{% url 'index' %}" class=""><i class="icon-home icon-white"></i> Home</a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dispatch<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'dispatch:home' %}"><i class="icon-home"></i> Home</a></li>
+                      <li><a href="{% url 'dispatch:search' %}"><i class="icon-search"></i> Search</a></li>
+                      <li><a href="{% url 'dispatch:pollers' %}"><i class="icon-briefcase"></i> Affiliate Pollers</a></li>
+                      <li><a href="{% url 'dispatch:servers' %}"><i class="icon-hdd"></i> Server Control</a></li>
+                      <li><a href="{% url 'dispatch:stats' %}"><i class="icon-globe"></i> Statistics</a></li>
+                    </ul>
+                </li>
+<!--
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dummy<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dummy</a></li>
+                        <li><a href="#">Dummy</a></li>
+                        <li><a href="#">Dummy</a></li>
+                        <li><a href="#">Dummy</a></li>
+                        <li><a href="#">Dummy</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Dummy</a></li>
+-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+
+    {% block heading %}{% endblock %}
+    {% bootstrap_messages %}
+    {% block content %}{% endblock %}
+
+  <div class="row">
+    <div class="span10 offset1"><hr></div>
+  </div>
+    <footer class="row">
+        <div class="span5 offset1">
+          <img class="img-rounded" src="/media/vubiquity-small.png" alt="">
+        </div>
+<!--
+        <div class="span5" style="text-align:right">
+            <p>
+                &copy; <a href="http://www.powelltechconsulting.com">Chris Powell</a> 2013
+            </p>
+        </div>
+-->
+    </footer>
+
+</div> <!-- container -->
+
+</body>
+</html>
+

@@ -1,0 +1,60 @@
+{% extends "dispatch_web.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="span10 offset1">
+    <h3>Search Transfer Logs</h3>
+    <br />
+    <form class="form-inline" action="" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</button>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span10 offset1">
+    {% if transfers %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Affiliate</th>
+            <th>Filename</th>
+            <th>Server</th>
+            <th>Started</th>
+            <th>Ended</th>
+            <th>Status</th>
+            <th>Error Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in transfers %}
+            {% if t.status == "Error" %}
+            <tr class="error">
+            {% elif t.status == "Cancelled" %}
+            <tr class="warning">
+            {% else %}
+            <tr>
+            {% endif %}
+              <td>{{ t.name }}</td>
+              <td>{{ t.filename }}</td>
+              <td>{{ t.server}}</td>
+              <td>{{ t.started }}</td>
+              <td>{{ t.ended }}</td>
+              <td>{{ t.status }}</td>
+              <td>{{ t.error }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">There are no transfers.</p>
+    {% endif %}
+
+  </div>
+</div>
+
+
+{% endblock %}

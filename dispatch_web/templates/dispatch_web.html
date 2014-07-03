@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block heading %}
+
+<div class="row">
+    <div class="span7 offset1">
+      <a href="{% url 'dispatch:home' %}"><h1>Dispatch</h1></a>
+    </div>
+    <div class="span3">
+      <img class="img-rounded pull-right" src="/media/dispatch/dispatch-small.png" alt="">
+    </div>
+</div>
+<div class="row">
+    <div class="span10 offset1">
+      <hr />
+    </div>
+  </div>
+
+{% endblock %}

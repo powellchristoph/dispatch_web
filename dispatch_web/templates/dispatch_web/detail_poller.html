@@ -1,0 +1,93 @@
+{% extends "dispatch_web.html" %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="span10 offset1">
+    <h3>{{ poller.name|upper }} <a href="{% url 'dispatch:pollers' %}" class="btn btn-primary pull-right" type="button">Poller List</a></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="span6 offset1">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td>Local Path</em></td>
+        <td>{{ poller.path }} </td>
+      </tr>
+      <tr>
+        <td>Poller Type</td>
+        <td>{{ poller.poller_type }}</td>
+      </tr>
+      <tr>
+        <td>Aspera Host</td>
+        <td>{{ poller.host }}</td>
+      </tr>
+      <tr>
+        <td>Aspera Username</td>
+        <td>{{ poller.username }}</td>
+      </tr>
+      <tr>
+        {% if poller.password %}
+        <td>Aspera Password</td>
+        <td>{{ poller.password }}</td>
+        {% else %}
+        <td>Aspera SSH Key</td>
+        <td>Private SSH Key in use.</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td>Aspera Transfer Speed</td>
+        <td>{{ poller.transfer_speed }} Mbps</td>
+      </tr>
+      <tr>
+        <td>Aspera SSH Port</td>
+        <td>{{ poller.ssh_port }}</td>
+      </tr>
+      <tr>
+        <td>Aspera Destination</td>
+        <td>/{{ poller.destination }}</td>
+      </tr>
+      <tr>
+        <td>Max Concurrent Transfers</td>
+        <td>{{ poller.max_transfers }}</td>
+      </tr>
+      <tr>
+        <td>Aspera File Encryption</td>
+        {% if poller.encrypt %}
+        <td>Enabled: {{ poller.encrypt_passphrase}}</td>
+        {% else %}
+        <td>Disabled</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td>Is Enabled?</td>
+        {% if poller.enabled %}
+        <td><p class="text-info">{{ poller.enabled }}</p></td>
+        {% else %}
+        <td><p class="text-warning">{{ poller.enabled }}</p></td>
+        {% endif %}
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="span5 offset1">
+      <a href="{% url 'dispatch:edit_poller' poller.id %}" class="btn btn-warning" type="button">Edit Poller</a>
+      <a href="#deleteModal" role="button" class="btn btn-danger" data-toggle="modal">Delete Poller</a>
+  </div>
+</div>
+
+<div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Are you sure you want to delete the {{ poller.name|upper }} poller?</h3>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <a href="{% url 'dispatch:delete_poller' poller.id %}" class="btn btn-danger">Delete</a>
+  </div>
+</div>
+
+
+{% endblock %}

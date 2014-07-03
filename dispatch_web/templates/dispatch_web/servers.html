@@ -1,0 +1,78 @@
+{% extends "dispatch_web.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="span10 offset1">
+    <h3>Servers</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="span10 offset1">
+    {% if servers %}
+    <table class="table table-striped">
+      {% for s in servers %}
+      <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.ipaddr }}</td>
+        {% if s.enabled %}
+        <td><p><button type="button" class="btn btn-info btn-small disabled">Running...</button>
+        {% else %}
+        <td><p><button type="button" class="btn btn-warning btn-small disabled">Stopped</button>
+        {% endif %}
+        <a href="{% url 'dispatch:delete_server' s.id %}" class="btn btn-danger" type="button">Delete</a></p>
+        </p></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>There are no servers configured.</p>
+    {% endif %}
+  </div>
+</div>
+<br />
+<br />
+<div class="row">
+  <div class="span5 offset1">
+    <legend>Add a server</legend>
+    <form class="form-horizontal" action="" method="post">
+      {% csrf_token %}
+      <fieldset>
+        {% for field in form %}
+          {% if field.errors %}
+          <div class="control-group error">
+            <label class="control-label">{{ field.label }}</label> 
+            <div class="controls">
+              {{ field }}
+              <span class="help-inline">
+                {% for error in field.errors %}{{ error }}{% endfor %}
+              </span>
+              {% if field.help_text %}
+                <p class="help muted"><small>{{ field.help_text }}</small></p>
+              {% endif %}
+            </div>
+          </div>
+          {% else %}
+            <div class="control-group">
+              <label class="control-label">{{ field.label }}</label> 
+              <div class="controls">
+                {{ field }}
+                {% if field.help_text %}
+                  <p class="help muted"><small>{{ field.help_text }}</small></p>
+                {% endif %}
+              </div>
+            </div> 
+          {% endif %}
+        {% endfor %}
+      </fieldset>
+      <p class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit </button>
+        or <a href="{% url 'dispatch:servers' %}" class="btn btn-inverse"> Cancel</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

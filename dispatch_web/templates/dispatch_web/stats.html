@@ -1,0 +1,15 @@
+{% extends "dispatch_web.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+
+<div class="row">
+  <div class="span10 offset1">
+    <center>
+      <h4 class="text-info"><strong>Dispatch Statistics</strong></h4>
+      <pre>{{ stats }}</pre>
+    </center>
+  </div>
+</div>
+{% endblock %}

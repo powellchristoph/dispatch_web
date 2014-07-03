@@ -1,0 +1,17 @@
+{% extends "dispatch_web.html" %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="span10">
+    <h3>{{ poller.name|upper }} <a href="{% url 'dispatch:pollers' %}" class="btn btn-primary pull-right" type="button">Poller List</a></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="span10">
+    <h3>DELETED!!!</h3>
+  </div>
+</div>
+
+{% endblock %}

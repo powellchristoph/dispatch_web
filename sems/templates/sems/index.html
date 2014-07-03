@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block heading %}
+
+<div class="row">
+  <div class="span10 offset1">
+    <div class="page-header">
+      <h2>Systems Engineering Management</h2>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+  <ul class="thumnails">
+    <li class="span3">
+      <div class="thumbnail">
+        <a href="{% url 'dispatch:home' %}" class="thumbnail">
+          <img src="{{ MEDIA_URL }}dispatch/dispatch-small.png" alt="">
+        </a>
+        <h3>Dispatch</h3>
+        <p>Automated Aspera file delivery to external affiliates.</p>
+      </div>
+    </li>
+
+  </ul>
+</div>
+</div>
+
+{% endblock %}
